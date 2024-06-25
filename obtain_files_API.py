@@ -26,7 +26,7 @@ def get_kegg_gene_annotations(gene_id):
 
 #retrieve gene information from NCBI Entrez
 def get_ncbi_gene_info(term, db="gene", retmax=10):
-    Entrez.email = "tun32893@temple.edu"  #email
+    Entrez.email = ""  #your email here
     handle = Entrez.esearch(db=db, term=term, retmax=retmax)
     record = Entrez.read(handle)
     handle.close()
@@ -58,7 +58,7 @@ def get_ncbi_gene_details(gene_id):
 
 
 #usage
-term = "Drosophila simulans" #i want info about this organism
+term = "" #your search term here
 ncbi_gene_ids = get_ncbi_gene_info(term) #run ncbi function
 
 # Write gene information and annotations to a file
@@ -68,7 +68,7 @@ with open(output_file, "w", newline="") as csvfile:
     writer.writerow(["Source", "Gene ID", "Gene Name", "Annotations"]) #format output table
     
     #kegg info
-    organism_code = "dsi"  #organism code for d. melanogaster
+    organism_code = " "  #organism code of choice here
     kegg_gene_info = get_kegg_gene_info(organism_code) #kegg function
     for line in kegg_gene_info: #extrapolate info from kegg
         parts = line.split("\t")
